@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
     double x, y, R;
     sscanf(argv[1], "(%le%*c%le)", &x, &y);
     sscanf(argv[2], "%le", &R);
-    if (x * x + y * y == R * R) {
-        cout << "This point is not inside the circle" << endl;
+    if (x * x + y * y >= R * R) {
+        cout << This point is not inside the circle << endl;
         return -1;
     }
     double distance = sqrt(x * x + y * y);
