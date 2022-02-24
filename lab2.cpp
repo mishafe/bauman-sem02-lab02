@@ -34,13 +34,14 @@ int main(int argc, char* argv[])
     sscanf(argv[1], "(%le%*c%le)", &x, &y);
     sscanf(argv[2], "%le", &R);
     if (x * x + y * y >= R * R) {
-        cout << This point is not inside the circle << endl;
+        cout << "This point is not inside the circle" << endl;
         return -1;
     }
     double distance = sqrt(x * x + y * y);
-    double angle = sin(y / distance);
-    if (x < 0 && y > 0) angle += pi / 2;
-    if (x < 0 && y < 0) angle -= pi / 2;
+    double angle = asin(y / distance);
+    if (x < 0 && y > 0) angle = pi - angle; // II четверть
+    if (x < 0 && y < 0) angle = -1 * pi - angle; // III четверть
+    if (x > 0 && y < 0) angle = -2*pi + angle; // IV четверть
     point result_point = point::polar(R, angle);
     cout << fixed;
     cout.precision(3);
